@@ -199,7 +199,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   onClick={closeMenu}
-                  className="block py-2 text-3xl font-semibold uppercase tracking-wide transition-opacity hover:opacity-70 sm:text-4xl md:text-5xl"
+                  className="block py-1.5 text-xl font-semibold uppercase tracking-wide transition-opacity hover:opacity-70 sm:text-2xl md:text-3xl"
                   style={{
                     color: navText.primary,
                     fontFamily: fonts.heading,

@@ -80,20 +80,7 @@ export default function ServiceAreaClient({
   );
 
   if (loading) {
-    return (
-      <div
-        className="flex min-h-screen items-center justify-center"
-        style={{ backgroundColor: colors.pageBackground, fontFamily: fonts.body }}
-      >
-        <div className="text-center">
-          <div
-            className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2"
-            style={{ borderColor: colors.primaryButton }}
-          />
-          <p style={{ color: colors.secondaryText }}>Loading service area page...</p>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   if (error || !serviceAreaPage) {

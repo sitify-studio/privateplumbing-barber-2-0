@@ -179,7 +179,7 @@ export function WhyChooseUsSection({ whyChooseUsSection, className }: WhyChooseU
                 }`}
                 style={{ transitionDelay: `${index * 180}ms` }}
               >
-                <div className="group relative h-full flex flex-col bg-white/90 backdrop-blur-sm rounded-3xl p-8 lg:p-10 border shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center"
+                <div className="group relative h-full flex flex-col bg-white/90 backdrop-blur-sm rounded-3xl p-8 lg:p-10 border shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center wb-section-card"
                   style={styles.card}>
                   {showStat ? (
                     <>
@@ -196,7 +196,7 @@ export function WhyChooseUsSection({ whyChooseUsSection, className }: WhyChooseU
                       {service.name && (
                         <h3
                           className={`text-xl md:text-2xl font-semibold transition-colors wcu-card-title`}
-                          style={{ fontFamily: fonts.heading, color: colors.mainText }}
+                          style={{ fontFamily: fonts.heading, color: colors.darkPrimaryText }}
                         >
                           {service.name}
                         </h3>
@@ -207,7 +207,7 @@ export function WhyChooseUsSection({ whyChooseUsSection, className }: WhyChooseU
                       {service.description && (
                         <div
                           className={`leading-relaxed mb-6 flex-1`}
-                          style={{ color: colors.mainText, opacity: 0.8, fontFamily: fonts.body }}
+                          style={{ color: colors.darkPrimaryText, opacity: 0.8, fontFamily: fonts.body }}
                         >
                           {service.descriptionContent &&
                           typeof service.descriptionContent === 'object' ? (
@@ -220,7 +220,7 @@ export function WhyChooseUsSection({ whyChooseUsSection, className }: WhyChooseU
                       {service.name && (
                         <h3
                           className={`text-xl md:text-2xl font-semibold mt-auto transition-colors wcu-card-title`}
-                          style={{ fontFamily: fonts.heading, color: colors.mainText }}
+                          style={{ fontFamily: fonts.heading, color: colors.darkPrimaryText }}
                         >
                           {service.titleContent && typeof service.titleContent === 'object' ? (
                             <TiptapRenderer content={service.titleContent} as="inline" />

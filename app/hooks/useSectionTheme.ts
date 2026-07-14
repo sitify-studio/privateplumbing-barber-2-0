@@ -15,7 +15,6 @@ function useRawSiteTheme() {
       textOnDark: t?.textOnDarkColor ?? t?.darkPrimaryColor,
       textOnDarkSecondary: t?.textOnDarkSecondaryColor ?? t?.darkSecondaryColor,
       primary: t?.primaryButtonColorLight ?? t?.primaryButtonColorDark,
-      cardLight: t?.cardBackgroundColorLight,
       sectionDark: t?.sectionBackgroundColorDark,
     };
   }, [site?.theme]);
@@ -38,10 +37,13 @@ export function useSectionTheme() {
     return resolveTextOnBackground(raw.primary, textCandidates).primary;
   }, [raw.primary, textCandidates]);
 
-  const textOnCardSurface = useMemo(() => {
-    const bg = raw.cardLight ?? '#ffffff';
-    return resolveTextOnBackground(bg, textCandidates);
-  }, [raw.cardLight, textCandidates]);
+  const textOnCardSurface = useMemo(
+    () => ({
+      primary: colors.darkPrimaryText,
+      secondary: colors.darkSecondaryText,
+    }),
+    [colors.darkPrimaryText, colors.darkSecondaryText]
+  );
 
   const textOnCardButton = textOnCardSurface.primary;
 
@@ -91,10 +93,12 @@ export function useSectionTheme() {
         card: {
           borderColor: 'color-mix(in srgb, var(--wb-primary) 10%, transparent)',
           backgroundColor: 'color-mix(in srgb, var(--wb-card-bg-light) 90%, transparent)',
+          color: colors.darkPrimaryText,
         } as React.CSSProperties,
         cardSolid: {
           borderColor: 'color-mix(in srgb, var(--wb-primary) 10%, transparent)',
           backgroundColor: colors.cardBackground,
+          color: colors.darkPrimaryText,
         } as React.CSSProperties,
         imagePlaceholder: {
           backgroundColor: colors.sectionBackgroundLight,

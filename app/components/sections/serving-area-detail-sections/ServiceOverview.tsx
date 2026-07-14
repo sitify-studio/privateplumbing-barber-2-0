@@ -77,7 +77,7 @@ export const ServiceOverview: React.FC<ServiceOverviewProps> = ({
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             {Boolean(data.label) && (
-              <p className="mb-4 text-sm font-medium wb-text-on-light-secondary" style={styles.accentText}>
+              <p className="mb-4 text-sm font-medium wb-text-on-dark-secondary" style={styles.accentText}>
                 <TiptapRenderer content={data.label} as="inline" />
               </p>
             )}
@@ -109,7 +109,7 @@ export const ServiceOverview: React.FC<ServiceOverviewProps> = ({
               <div
                 ref={descRef}
                 className={cn(
-                  'mb-6 text-base leading-relaxed wb-text-on-light-secondary transition-all md:text-lg',
+                  'mb-6 text-base leading-relaxed wb-text-on-dark-secondary transition-all md:text-lg',
                   descVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 )}
               >
@@ -122,7 +122,7 @@ export const ServiceOverview: React.FC<ServiceOverviewProps> = ({
             )}
 
             {secondaryDescription && (
-              <div className="text-base leading-relaxed wb-text-on-light-secondary md:text-lg">
+              <div className="text-base leading-relaxed wb-text-on-dark-secondary md:text-lg">
                 {typeof data.secondaryDescription === 'object' ? (
                   <TiptapRenderer content={data.secondaryDescription} />
                 ) : (

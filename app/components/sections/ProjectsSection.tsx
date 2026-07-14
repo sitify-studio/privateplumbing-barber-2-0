@@ -234,7 +234,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               if (!imageUrl && !title) return null;
 
               const card = (
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white/90 backdrop-blur-sm shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" style={styles.card}>
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white/90 backdrop-blur-sm shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl wb-section-card" style={styles.card}>
                   {imageUrl ? (
                     <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden" style={styles.imagePlaceholder}>
                       <Image
@@ -261,7 +261,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     <div className="flex items-start justify-between gap-3 mb-3">
                       <h3
                         className={`text-xl md:text-2xl font-semibold transition-colors hero-card-title`}
-                        style={{ fontFamily: fonts.heading, color: colors.mainText }}
+                        style={{ fontFamily: fonts.heading, color: colors.darkPrimaryText }}
                       >
                         {title}
                       </h3>
@@ -275,7 +275,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     {desc && (
                       <div
                         className={`line-clamp-3 flex-1 text-sm leading-relaxed`}
-                        style={{ color: colors.secondaryText, fontFamily: fonts.body }}
+                        style={{ color: colors.darkSecondaryText, fontFamily: fonts.body }}
                       >
                         {typeof desc === 'string' ? desc : <TiptapRenderer content={desc} as="inline" />}
                       </div>

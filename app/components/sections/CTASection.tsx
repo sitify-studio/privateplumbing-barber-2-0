@@ -141,7 +141,7 @@ export function CTASection({ ctaSection, className }: CTASectionProps) {
           <div className="text-left">
             <h2
               ref={headingRef}
-              className="text-4xl font-semibold tracking-tight wb-text-on-light md:text-6xl"
+              className="text-4xl font-semibold tracking-tight wb-text-on-dark md:text-6xl"
               style={{ fontFamily: fonts.heading }}
             >
               {heading}

@@ -168,7 +168,7 @@ export function ServingAreasSection({
           {resolvedServiceAreas.map((area) => {
             const card = (
               <div
-                className="group flex items-center gap-3 rounded-xl border px-4 py-3 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md sm:gap-4 sm:px-5 sm:py-4"
+                className="group flex items-center gap-3 rounded-xl border px-4 py-3 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md sm:gap-4 sm:px-5 sm:py-4 wb-section-card"
                 style={{ ...styles.cardSolid, ...cardBorder }}
               >
                 <div
@@ -228,7 +228,7 @@ export function ServingAreasSection({
 
         <div className="mt-10 text-center sm:mt-12">
           <div
-            className="mx-auto max-w-xl rounded-xl border px-6 py-6 sm:px-8"
+            className="mx-auto max-w-xl rounded-xl border px-6 py-6 sm:px-8 wb-section-card"
             style={{ ...styles.cardSolid, ...cardBorder }}
           >
             <h3

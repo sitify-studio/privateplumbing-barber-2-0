@@ -53,7 +53,7 @@ function MenuLines({ color, className }: { color: string; className?: string }) 
 }
 
 export function Header() {
-  const { site, pages } = useWebBuilder();
+  const { site, pages, loading } = useWebBuilder();
   const { colors, fonts, text } = useSectionTheme();
   const navText = text.onDark;
   const accent = colors.primaryButton;
@@ -86,6 +86,8 @@ export function Header() {
     };
   }, [isOpen]);
 
+  if (loading) return null;
+
   const menuLabelStyle = {
     color: navText.primary,
     fontFamily: fonts.body,
@@ -94,15 +96,15 @@ export function Header() {
   return (
     <>
       <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
-        <div className="pointer-events-auto mx-auto flex h-16 items-center justify-between px-5 sm:px-8 md:h-20 md:px-10 lg:px-16">
+        <div className="pointer-events-auto mx-auto flex h-20 items-center justify-between px-5 sm:px-8 md:h-24 md:px-10 lg:px-16">
           <Link href="/" className="flex shrink-0 items-center" aria-label={businessName}>
             {logoImage ? (
               <Image
                 src={logoImage}
                 alt={logoAlt}
-                width={200}
-                height={56}
-                className="h-9 w-auto max-w-[180px] object-contain brightness-0 invert sm:h-10 sm:max-w-[220px]"
+                width={360}
+                height={100}
+                className="h-16 w-auto max-w-[300px] object-contain sm:h-20 sm:max-w-[360px]"
                 priority
               />
             ) : (
@@ -151,7 +153,7 @@ export function Header() {
         style={{ backgroundColor: colors.sectionBackgroundDark }}
         aria-hidden={!isOpen}
       >
-        <div className="flex h-16 items-center justify-between px-5 sm:px-8 md:h-20 md:px-10 lg:px-16">
+        <div className="flex h-20 items-center justify-between px-5 sm:px-8 md:h-24 md:px-10 lg:px-16">
           <Link
             href="/"
             onClick={closeMenu}
@@ -162,9 +164,9 @@ export function Header() {
               <Image
                 src={logoImage}
                 alt={logoAlt}
-                width={200}
-                height={56}
-                className="h-9 w-auto max-w-[180px] object-contain brightness-0 invert sm:h-10 sm:max-w-[220px]"
+                width={360}
+                height={100}
+                className="h-16 w-auto max-w-[300px] object-contain sm:h-20 sm:max-w-[360px]"
               />
             ) : (
               <span

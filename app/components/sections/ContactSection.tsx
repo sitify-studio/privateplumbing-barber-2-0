@@ -217,7 +217,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
             {showContactInfo && (
               <div
-                className="flex flex-col rounded-2xl border p-6 shadow-md md:p-8 lg:p-10"
+                className="flex flex-col rounded-2xl border p-6 shadow-md md:p-8 lg:p-10 wb-section-card"
                 style={{ ...styles.cardSolid, ...cardBorder }}
               >
                 <div className="mb-8">

@@ -138,7 +138,7 @@ export const ServiceServingAreasSection: React.FC<ServiceServingAreasSectionProp
                 className="group relative inline-flex items-center gap-3 rounded-full px-6 py-3.5 no-underline transition-all duration-300 ease-out hover:scale-[1.03] active:scale-95"
                 style={{
                   backgroundColor: `${themeColors.cardBackground}70`,
-                  color: themeColors.mainText,
+                  color: themeColors.darkPrimaryText,
                   border: `1px solid ${themeColors.inactive}15`,
                   boxShadow: '0 2px 8px -4px rgba(0,0,0,0.04)',
                   fontFamily: themeFonts.body,

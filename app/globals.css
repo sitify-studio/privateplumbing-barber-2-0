@@ -127,19 +127,6 @@ body {
   background-color: var(--wb-scrollbar-thumb-hover);
 }
 
-/* During preloader: keep scrollbar space, but hide scrollbar visuals */
-html.preloader-active {
-  scrollbar-color: transparent transparent;
-}
-
-html.preloader-active::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-html.preloader-active::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
 .container-main {
   max-width: 80rem;
   margin-left: auto;
@@ -324,6 +311,23 @@ html.preloader-active::-webkit-scrollbar-thumb {
 }
 .wb-text-on-light-secondary {
   color: var(--wb-text-secondary);
+}
+
+/* Section cards: use builder white / on-dark text tokens */
+.wb-section-card {
+  color: var(--wb-text-on-dark);
+}
+.wb-section-card .wb-text-on-light {
+  color: var(--wb-text-on-dark);
+}
+.wb-section-card .wb-text-on-light-secondary {
+  color: var(--wb-text-on-dark-secondary);
+}
+.wb-section-card .wb-border-on-light {
+  border-color: color-mix(in srgb, var(--wb-text-on-dark) 14%, transparent);
+}
+.wb-section-card .wb-border-on-light-soft {
+  border-color: color-mix(in srgb, var(--wb-text-on-dark) 22%, transparent);
 }
 .wb-border-on-light {
   border-color: color-mix(in srgb, var(--wb-text-main) 14%, transparent);

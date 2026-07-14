@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, useLayoutEffect, useState, ReactNode } from 'react';
 import { Site, Page, Service, BlogPost, Project } from '@/app/lib/types';
 import { siteApi, pageApi, serviceApi, blogApi, projectApi, testimonialApi, serviceAreaApi } from '@/app/lib/api';
 
@@ -28,6 +28,39 @@ const CONTENT_POLL_INTERVAL_MS = readPollIntervalMs(
   'NEXT_PUBLIC_WEBBUILDER_CONTENT_POLL_INTERVAL_MS',
   isProdBuild ? 0 : 60_000
 );
+
+const CACHE_KEY = SITE_SLUG ? `wb-bootstrap:${SITE_SLUG}` : null;
+const CACHE_TTL_MS = 5 * 60_1000;
+
+type BootstrapCache = {
+  ts: number;
+  site: Site;
+  pages: Page[];
+  services: Service[];
+};
+
+function readBootstrapCache(): BootstrapCache | null {
+  if (!CACHE_KEY || typeof window === 'undefined') return null;
+  try {
+    const raw = sessionStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as BootstrapCache;
+    if (!parsed?.site || !Array.isArray(parsed.pages)) return null;
+    if (Date.now() - parsed.ts > CACHE_TTL_MS) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function writeBootstrapCache(data: Omit<BootstrapCache, 'ts'>) {
+  if (!CACHE_KEY || typeof window === 'undefined') return;
+  try {
+    sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ...data, ts: Date.now() }));
+  } catch {
+    /* ignore quota errors */
+  }
+}
 
 
 
@@ -74,45 +107,62 @@ export const WebBuilderProvider: React.FC<WebBuilderProviderProps> = ({ children
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const loadSite = async (slug: string) => {
+  const loadSite = async (slug: string, opts?: { background?: boolean }) => {
+    const background = Boolean(opts?.background);
+    let loadedSlug: string | null = null;
+    let gotSite = false;
     try {
-      setLoading(true);
+      if (!background) {
+        setLoading(true);
+      }
       setError(null);
-      
-      // Use real API when backend is available
+
       const siteData = await siteApi.getSiteBySlug(slug);
       setSite(siteData);
-      
-      await Promise.all([
-        loadPages(siteData.slug),
-        loadServicesBySiteSlug(siteData.slug),
-        loadBlogPosts(siteData.slug),
-        loadProjects(siteData.slug),
-        loadTestimonials(siteData.slug),
-        loadServiceAreaPages(siteData.slug),
+      gotSite = true;
+      loadedSlug = siteData.slug;
+
+      // Critical path: pages + services unblock the UI
+      const [pagesData, servicesData] = await Promise.all([
+        pageApi.getPagesBySite(siteData.slug),
+        serviceApi.getServicesBySite(siteData.slug),
       ]);
+      setPages(pagesData);
+      setServices(servicesData);
+      writeBootstrapCache({ site: siteData, pages: pagesData, services: servicesData });
     } catch (err) {
-      const msg = err instanceof Error ? err.message : 'Failed to load site';
-      setError(
-        msg.includes('500')
-          ? 'The site builder API is temporarily unavailable. Refresh the page or try again shortly.'
-          : msg
-      );
+      if (!background || !gotSite) {
+        const msg = err instanceof Error ? err.message : 'Failed to load site';
+        setError(
+          msg.includes('500')
+            ? 'The site builder API is temporarily unavailable. Refresh the page or try again shortly.'
+            : msg
+        );
+      }
     } finally {
-      setLoading(false);
+      if (!background) {
+        setLoading(false);
+      }
+    }
+
+    // Secondary data loads after first paint (non-blocking)
+    if (loadedSlug) {
+      void Promise.all([
+        loadBlogPosts(loadedSlug),
+        loadProjects(loadedSlug),
+        loadTestimonials(loadedSlug),
+        loadServiceAreaPages(loadedSlug),
+      ]);
     }
   };
 
   const loadPage = async (siteSlug: string, pageSlug: string) => {
     try {
-      setLoading(true);
       setError(null);
       const pageData = await pageApi.getPageBySlug(siteSlug, pageSlug);
       setCurrentPage(pageData);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load page');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -173,6 +223,16 @@ export const WebBuilderProvider: React.FC<WebBuilderProviderProps> = ({ children
     }
   };
 
+  // Restore cached bootstrap before paint on reload
+  useLayoutEffect(() => {
+    const cached = readBootstrapCache();
+    if (!cached) return;
+    setSite(cached.site);
+    setPages(cached.pages);
+    setServices(cached.services);
+    setLoading(false);
+  }, []);
+
   // Auto-load site from env variable on mount
   useEffect(() => {
     if (!SITE_SLUG) {
@@ -180,7 +240,8 @@ export const WebBuilderProvider: React.FC<WebBuilderProviderProps> = ({ children
       setLoading(false);
       return;
     }
-    loadSite(SITE_SLUG);
+    const cached = readBootstrapCache();
+    loadSite(SITE_SLUG, { background: Boolean(cached) });
   }, []);
 
   // Optional: poll site for theme edits from builder (disabled in production by default — see rate limits)

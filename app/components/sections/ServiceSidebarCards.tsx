@@ -37,7 +37,7 @@ export const OtherServicesCard: React.FC<OtherServicesCardProps> = ({ otherServi
             <h3 
                 className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-6"
                 style={{ 
-                    color: themeColors.mainText,
+                    color: themeColors.darkPrimaryText,
                     fontFamily: themeFonts.heading
                 }}
             >
@@ -109,7 +109,7 @@ export const QuickContactCard: React.FC<QuickContactCardProps> = ({ service }) =
             <h3
                 className="text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-3"
                 style={{
-                    color: themeColors.mainText,
+                    color: themeColors.darkPrimaryText,
                     fontFamily: themeFonts.heading
                 }}
             >
@@ -119,7 +119,7 @@ export const QuickContactCard: React.FC<QuickContactCardProps> = ({ service }) =
             <p
                 className="text-sm font-light leading-relaxed mb-6"
                 style={{ 
-                    color: themeColors.secondaryText,
+                    color: themeColors.darkSecondaryText,
                     fontFamily: themeFonts.body
                 }}
             >

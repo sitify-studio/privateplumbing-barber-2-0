@@ -124,7 +124,7 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ details, classNa
                   return (
                     <div
                       key={index}
-                      className="rounded-lg border"
+                      className="rounded-lg border wb-section-card"
                       style={{ ...styles.cardSolid, ...faqItemBorder }}
                     >
                       <button
@@ -198,7 +198,7 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ details, classNa
                     return (
                       <div
                         key={index}
-                        className="flex gap-4 rounded-lg border p-5"
+                        className="flex gap-4 rounded-lg border p-5 wb-section-card"
                         style={{ ...styles.cardSolid, ...faqItemBorder }}
                       >
                         <div
@@ -238,7 +238,7 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ details, classNa
                     return (
                       <div
                         key={index}
-                        className="rounded-lg border p-5"
+                        className="rounded-lg border p-5 wb-section-card"
                         style={{ ...styles.cardSolid, ...faqItemBorder }}
                       >
                         <div className="mb-3 flex items-center gap-3">
@@ -268,7 +268,7 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ details, classNa
 
             {ctaButton && (
               <div
-                className="rounded-lg border p-6 text-center"
+                className="rounded-lg border p-6 text-center wb-section-card"
                 style={{ ...styles.cardSolid, ...faqItemBorder }}
               >
                 <h3

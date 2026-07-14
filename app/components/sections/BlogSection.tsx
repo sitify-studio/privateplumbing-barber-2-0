@@ -10,7 +10,6 @@ import { getImageSrc, cn } from '@/app/lib/utils';
 import { useWebBuilder } from '@/app/providers/WebBuilderProvider';
 import { useScrollAnimation } from '@/app/hooks/useScrollAnimation';
 import { useSectionTheme } from '@/app/hooks/useSectionTheme';
-import { CardLoader } from '@/app/components/ui/SkeletonLoader';
 import { tiptapToText } from '@/app/lib/seo';
 
 type BlogSectionInput = NonNullable<Page['blogSection']> & {
@@ -136,29 +135,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ blogSection, className
   const showDate = Boolean(sectionData.showDate);
 
   if (loading && blogPosts.length === 0) {
-    return (
-      <section
-        className={cn('relative py-20', className)}
-        id="blog"
-        style={{ backgroundColor: colors.pageBackground, fontFamily: fonts.body }}
-      >
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-12">
-            <div
-              className="aspect-[16/10] animate-pulse rounded-3xl lg:col-span-7"
-              style={styles.imagePlaceholder}
-            />
-            <div className="space-y-6 lg:col-span-5">
-              {[1, 2].map((i) => (
-                <div key={i} className="rounded-3xl border p-4" style={styles.card}>
-                  <CardLoader />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    );
+    return null;
   }
 
   if (displayPosts.length === 0 && !hasTitle && !hasDescription) {
@@ -344,7 +321,7 @@ function FeaturedPostCard({
   return (
     <article
       className={cn(
-        'group overflow-hidden rounded-3xl border shadow-lg backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl',
+        'group overflow-hidden rounded-3xl border shadow-lg backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl wb-section-card',
         className
       )}
       style={{ ...styles.cardSolid, fontFamily: fonts.body }}
@@ -402,7 +379,7 @@ function MorePostCard({ post, showDate }: { post: BlogPostItem; showDate: boolea
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex gap-4 overflow-hidden rounded-3xl border p-4 shadow-md backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl no-underline"
+      className="group flex gap-4 overflow-hidden rounded-3xl border p-4 shadow-md backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl no-underline wb-section-card"
       style={{ ...styles.cardSolid, fontFamily: fonts.body }}
     >
       {imgSrc ? (

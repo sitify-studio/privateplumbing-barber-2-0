@@ -144,7 +144,7 @@ export function ServicesSection({ servicesSection, className }: ServicesSectionP
                 />
               </div>
               <div
-                className="flex flex-1 flex-col border-t px-6 py-6 text-center"
+                className="flex flex-1 flex-col border-t px-6 py-6 text-center wb-section-card"
                 style={{ ...styles.cardSolid, ...accentBorder }}
               >
                 <h3

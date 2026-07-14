@@ -152,7 +152,7 @@ export function TestimonialsSection({ testimonialsSection, className }: Testimon
                     className="flex-[0_0_100%] px-2 sm:px-3 md:flex-[0_0_100%] lg:flex-[0_0_50%]"
                   >
                     <div
-                      className="rounded-2xl p-8 text-center shadow-md md:p-10"
+                      className="rounded-2xl p-8 text-center shadow-md md:p-10 wb-section-card"
                       style={styles.cardSolid}
                     >
                       <div className="text-2xl" style={styles.accentText}>

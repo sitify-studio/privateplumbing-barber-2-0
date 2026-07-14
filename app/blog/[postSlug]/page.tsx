@@ -52,7 +52,7 @@ export default function BlogPostPage() {
     }, [site, postSlug, siteLoading]);
 
     if (siteLoading || loading) {
-        return <div className="min-h-screen flex items-center justify-center animate-pulse uppercase tracking-[0.3em] text-xs">Loading Perspective...</div>;
+        return null;
     }
 
     if (error || !post) {

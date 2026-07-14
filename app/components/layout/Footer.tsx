@@ -76,11 +76,11 @@ export function Footer() {
               <Image
                 src={logoUrl}
                 alt={logoAlt}
-                width={200}
-                height={200}
+                width={360}
+                height={100}
                 quality={CMS_IMAGE_QUALITY}
-                sizes="120px"
-                className="h-10 w-auto"
+                sizes="280px"
+                className="h-20 w-auto max-w-[360px] object-contain sm:h-24"
               />
             </div>
             {resolvedBusinessDescription && (

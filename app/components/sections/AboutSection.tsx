@@ -154,7 +154,7 @@ export function AboutSection({ aboutSection, page, className }: AboutSectionProp
                         style={{ animationDelay: `${0.2 + index * 0.1}s` }}
                       >
                         <div
-                          className="group flex items-center gap-4 rounded-3xl px-5 py-4 border shadow-sm hover:shadow-md transition-all"
+                          className="group flex items-center gap-4 rounded-3xl px-5 py-4 border shadow-sm hover:shadow-md transition-all wb-section-card"
                           style={{
                             ...themeStyles.cardSolid,
                             borderColor: 'color-mix(in srgb, var(--wb-primary) 12%, transparent)',

@@ -91,13 +91,13 @@ export function GallerySection({ gallerySection, className }: GallerySectionProp
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
           <h2
-            className="mb-4 text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-tight tracking-tight wb-text-on-light"
+            className="mb-4 text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-tight tracking-tight wb-text-on-dark"
             style={{ fontFamily: fonts.heading }}
           >
             {resolvedTitle}
           </h2>
           {resolvedDescription && (
-            <p className="mx-auto max-w-2xl text-[15px] leading-7 wb-text-on-light-secondary md:text-base md:leading-relaxed">
+            <p className="mx-auto max-w-2xl text-[15px] leading-7 wb-text-on-dark-secondary md:text-base md:leading-relaxed">
               {resolvedDescription}
             </p>
           )}

@@ -97,12 +97,12 @@ export function CompanyDetailSection({
     .team-name {
       font-size: 1rem;
       font-weight: 600;
-      color: var(--wb-text-main);
+      color: var(--wb-text-on-dark);
       margin: 0.15rem 0;
     }
     .team-role {
       font-size: 0.85rem;
-      color: var(--wb-text-secondary);
+      color: var(--wb-text-on-dark-secondary);
       margin-bottom: 0.75rem;
     }
     .team-btn {
@@ -138,7 +138,7 @@ export function CompanyDetailSection({
           <div ref={headerRef} className="mb-20 space-y-6 text-center">
             {heading && (
               <h2
-                className={`text-[clamp(2.5rem,6vw,4rem)] font-light leading-[1] tracking-[-0.03em] wb-text-on-light transition-all duration-1200 ${
+                className={`text-[clamp(2.5rem,6vw,4rem)] font-light leading-[1] tracking-[-0.03em] wb-text-on-dark transition-all duration-1200 ${
                   headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ fontFamily: fonts.heading }}
@@ -156,7 +156,7 @@ export function CompanyDetailSection({
             </div>
             {description && (
               <p
-                className={`mx-auto max-w-7xl text-base leading-relaxed tracking-wide wb-text-on-light-secondary transition-all duration-1200 delay-300 md:text-lg ${
+                className={`mx-auto max-w-7xl text-base leading-relaxed tracking-wide wb-text-on-dark-secondary transition-all duration-1200 delay-300 md:text-lg ${
                   headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
@@ -171,7 +171,7 @@ export function CompanyDetailSection({
                 {sections.slice(0, 3).map((section, i) => (
                   <div
                     key={`team-${i}`}
-                    className="team-card"
+                    className="team-card wb-section-card"
                     onMouseEnter={() => setHoveredIndex(i)}
                     onMouseLeave={() => setHoveredIndex(null)}
                   >
